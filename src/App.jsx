@@ -9,6 +9,9 @@ import Products from "./Components/Products";
 import Reviews from "./Components/Reviews";
 import Slider from "./Components/Slider";
 import PropTypes from "prop-types";
+import Brands from "./Components/Brands";
+
+import VartaSponsor from "./Components/vartaSponsor";
 
 SectionWrapper.propTypes = {
   children: PropTypes.node.isRequired, // 'children' türü doğrulandı
@@ -37,7 +40,15 @@ function App() {
   return (
     <>
       <Navbar />
-      <Slider />
+      <SectionWrapper>
+        <Slider />
+      </SectionWrapper>
+      <SectionWrapper>
+        <VartaSponsor />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Brands />
+      </SectionWrapper>
       <SectionWrapper>
         <Products />
       </SectionWrapper>
