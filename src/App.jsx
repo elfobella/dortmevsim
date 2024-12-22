@@ -1,13 +1,13 @@
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
-import About from "./Components/About.jsx";
-import Contact from "./Components/Contact.jsx";
-import Footer from "./Components/Footer.jsx";
-import Navbar from "./Components/Navbar.jsx";
-import Products from "./Components/Products.jsx";
-import Reviews from "./Components/Reviews.jsx";
-import Slider from "./Components/Slider.jsx";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
+import Navbar from "./Components/Navbar";
+import Products from "./Components/Products";
+import Reviews from "./Components/Reviews";
+import Slider from "./Components/Slider";
 import PropTypes from "prop-types";
 
 SectionWrapper.propTypes = {
