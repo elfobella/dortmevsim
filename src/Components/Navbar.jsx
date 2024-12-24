@@ -23,7 +23,11 @@ const Navbar = () => {
       {/* Navbar container */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
-        <img className="w-1/2 md:w-1/6" src={Logo} alt="" />
+        <img
+          className="w-1/2 md:w-1/6"
+          src={Logo}
+          alt="Dört Mevsim Akü Market"
+        />
         {/* Desktop menu */}
         <div className="flex gap-2 items-center">
           <ul className="hidden md:flex space-x-6 border-r border-black pr-2">
