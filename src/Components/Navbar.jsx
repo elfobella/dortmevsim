@@ -1,9 +1,9 @@
+import Logo from "../assets/dortmevsimaku-logo.jpg";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Phone } from "lucide-react";
-
-import Logo from "../assets/dortmevsimaku-logo.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
