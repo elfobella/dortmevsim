@@ -15,7 +15,7 @@ export default function ProductSection() {
           <a
             href="https://www.google.com/maps/place/D%C3%B6rt+mevsim+ak%C3%BC+market+hamza+alada%C4%9F/@40.7667869,29.9057532,17z/data=!3m1!4b1!4m6!3m5!1s0x14cb455ee2edd8a5:0x15dd8203e8d684af!8m2!3d40.7667869!4d29.9057532!16s%2Fg%2F11y6dvxx0s?hl=tr&entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
-            className="bg-black font-bold text-white text-xl px-4 py-2 rounded hover:bg-[#555] transition-all duration-300"
+            className="bg-black font-bold text-white text-xl px-8 py-2 rounded hover:bg-[#555] transition-all duration-300"
           >
             Konumu Gör
           </a>
