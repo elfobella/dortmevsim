@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { MapPin, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
+
+import Logo from "../assets/dortmevsimaku-logo.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,14 +19,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full p-2 bg-white border-b border-black shadow-md z-50 transition-all">
+    <nav className="fixed top-0 left-0 w-full p-2 bg-white border-b shadow-md z-50 transition-all">
       {/* Navbar container */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
-        <div className="text-base md:text-2xl font-bold text-gray-700">
-          Dört Mevsim Akü Market
-        </div>
-
+        <img className="w-1/2 md:w-1/6" src={Logo} alt="" />
         {/* Desktop menu */}
         <div className="flex gap-2 items-center">
           <ul className="hidden md:flex space-x-6 border-r border-black pr-2">
@@ -71,12 +70,16 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-white py-4 px-6 space-y-4"
+          className="md:hidden bg-white py-4 px-6"
         >
-          <ul className="space-y-2">
+          <ul className="text-xl  font-semibold">
             {routers.map((route) => (
-              <a key={route.link} href={"#" + route.href}>
-                <li>{route.link}</li>
+              <a
+                className="active:text-gray-400"
+                key={route.link}
+                href={"#" + route.href}
+              >
+                <li className="py-2 border-b">{route.link}</li>
               </a>
             ))}
           </ul>

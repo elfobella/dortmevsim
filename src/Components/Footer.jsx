@@ -7,30 +7,25 @@ export default function Footer() {
         <div className="flex flex-col items-center md:flex-row gap-10 pb-14">
           <div className="md:w-1/3">
             <div>
-              <h1 className="text-3xl pb-1 font-medium text-[#be6c30]">
+              <h1 className="text-3xl pb-1 border-b border-white font-medium text-white">
                 Dört mevsim akü market
               </h1>
-              <div className="absolute h-0.5 w-48 bg-gray-300"></div>
             </div>
             <div className="pt-2">
               <div className="flex gap-2 items-center">
-                <a href="https://www.instagram.com/YigitAkuAS/" target="_blank">
-                  <Instagram className="text-[#be6c30] w-5 h-5" />
-                </a>
-                <a href="https://www.facebook.com/YigitAkuAS/" target="_blank">
-                  <Facebook className="text-[#be6c30] w-5 h-5" />
-                </a>
-                <a href="https://x.com/yigitakuas" target="_blank">
-                  <Twitter className="text-[#be6c30] w-5 h-5" />
-                </a>
                 <a
-                  href="https://www.linkedin.com/company/yigitakuas/"
+                  className="hover:bg-white rounded-lg p-1 transition-all group"
+                  href="https://www.instagram.com/dortmevsimakumarket/"
                   target="_blank"
                 >
-                  <Linkedin className="text-[#be6c30] w-5 h-5" />
+                  <Instagram className="group-hover:text-black text-white w-5 h-5" />
                 </a>
-                <a href="https://www.youtube.com/@yigitaku9558" target="_blank">
-                  <Youtube className="text-[#be6c30] w-5 h-5" />
+                <a
+                  className="hover:bg-white rounded-lg p-1 transition-all group"
+                  href="https://www.facebook.com/profile.php?id=61563525358166"
+                  target="_blank"
+                >
+                  <Facebook className="group-hover:text-black text-white w-5 h-5" />
                 </a>
               </div>
             </div>
