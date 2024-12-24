@@ -14,10 +14,10 @@ export default function Contact() {
             />
           </div>
           <div className="flex flex-col ">
-            <h3 className="text-2xl mb-4 font-bold">
+            <h3 className="text-3xl mb-4 font-bold">
               Bizimle İletişime Geçin:
             </h3>
-            <div className="flex flex-col gap-2 w-1/2">
+            <div className="flex text-lg flex-col gap-2 w-1/2">
               <div className="border-b border-black pb-1">
                 <MapPin className="w-5 h-5 text-[#be6c30]" />
                 <p>

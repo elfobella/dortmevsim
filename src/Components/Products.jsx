@@ -12,26 +12,26 @@ import Img11 from "../assets/11.jpg";
 export default function Products() {
   return (
     <section id="products">
-      <div className="max-w-4xl py-12 mx-auto px-4">
+      <div className="max-w-4xl py-24 mx-auto px-4">
         {/* Başlık */}
-        <h3 className="text-[#be6c30] text-center text-4xl md:text-6xl font-bold mb-6">
+        <h3 className="text-black text-center text-5xl drop-shadow-lg bg-red-500 md:text-6xl font-bold mb-6">
           Ürünlerimiz
         </h3>
 
         {/* Resimlerin yerleşimi için Grid */}
         <div>
-          <div className="grid mt-6 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 p-4">
-            <img src={Img1} alt="" />
-            <img src={Img2} alt="" />
-            <img src={Img3} alt="" />
-            <img src={Img4} alt="" />
-            <img src={Img5} alt="" />
-            <img src={Img6} alt="" />
-            <img src={Img7} alt="" />
-            <img src={Img8} alt="" />
-            <img src={Img9} alt="" />
-            <img src={Img10} alt="" />
-            <img src={Img11} alt="" />
+          <div className="grid mt-6 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+            <img className="rounded-lg shadow-lg" src={Img1} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img2} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img3} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img4} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img5} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img6} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img7} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img8} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img9} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img10} alt="" />
+            <img className="rounded-lg shadow-lg" src={Img11} alt="" />
           </div>
         </div>
       </div>

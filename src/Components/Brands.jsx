@@ -10,8 +10,8 @@ export default function Brands() {
   const brands = [Bosch, Varta, Gentry, Platin, inciAku, Prs, Turkuaz];
 
   return (
-    <div className="py-24">
-      <h2 className="text-center text-6xl font-medium text-stone-800 pb-12">
+    <div className="bg-gray-100 py-6">
+      <h2 className="text-center drop-shadow-md text-3xl md:text-5xl font-semibold text-stone-700 pb-4">
         Markalarımız
       </h2>
       <div className="overflow-hidden relative">
@@ -19,7 +19,7 @@ export default function Brands() {
           {brands.concat(brands).map((brand, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-44 mx-4 flex items-center justify-center"
+              className="flex-shrink-0 w-24 md:w-44 mx-4 flex items-center justify-center"
             >
               <img
                 src={brand}

@@ -10,11 +10,19 @@ const Cards = ({ icon, title, desc }) => {
         visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 0.5 }}
-      className="bg-white border-2 flex flex-col items-center text-center border-[#be6c30] p-6 rounded"
+      className="flex flex-col justify-between items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
     >
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-600">{desc}</p>
+      <a href="#">
+        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {icon}
+        </h5>
+      </a>
+      <h2 className="mb-3 font-semibold text-2xl text-center text-gray-700 dark:text-gray-400">
+        {title}
+      </h2>
+      <p className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black">
+        {desc}
+      </p>
     </motion.div>
   );
 };
@@ -36,17 +44,17 @@ const CardsList = () => {
 
   const cardsData = [
     {
-      icon: <ShieldCheck className="text-[#be6c30] w-16 h-16" />,
+      icon: <ShieldCheck className="text-[#be6c30] w-20 h-20" />,
       title: "Güvenilir Kalite",
       desc: "Yalnızca uzun ömürlü, güvenilir markaların akülerini sunuyoruz.",
     },
     {
-      icon: <HandCoins className="text-[#be6c30] w-16 h-16" />,
+      icon: <HandCoins className="text-[#be6c30] w-20 h-20" />,
       title: "Her İhtiyaca Uygun",
       desc: "Binek, ticari araç veya motosiklet fark etmez; geniş ürün yelpazesiyle yanınızdayız.",
     },
     {
-      icon: <Truck className="text-[#be6c30] w-16 h-16" />,
+      icon: <Truck className="text-[#be6c30] w-20 h-20" />,
       title: "Hızlı Teslimat",
       desc: "Stok garantisiyle ihtiyacınız olan aküyü hemen temin edin.",
     },
