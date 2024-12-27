@@ -1,12 +1,13 @@
 import Logo from "../assets/dortmevsimaku-logo.jpg";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Phone } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const routers = [
     { link: "Ürünlerimiz", href: "products" },
@@ -18,19 +19,32 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 w-full p-2 bg-white border-b shadow-md z-50 transition-all">
+    <nav
+      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl p-2 ${
+        isScrolled ? "bg-white shadow-md" : "bg-white backdrop-blur"
+      } rounded-xl transition-all duration-300 z-50`}
+    >
       {/* Navbar container */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+      <div className="px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
         <img
           className="w-1/2 md:w-1/6"
           src={Logo}
           alt="Dört Mevsim Akü Market"
         />
+
         {/* Desktop menu */}
-        <div className="flex gap-2 items-center">
-          <ul className="hidden md:flex space-x-6 border-r border-black pr-2">
+        <div className="hidden md:flex gap-2 items-center">
+          <ul className="flex space-x-6 border-r border-black pr-2">
             {routers.map((route) => (
               <a
                 className="relative group font-medium"
@@ -74,9 +88,9 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-white py-4 px-6"
+          className="md:hidden bg-white py-4 px-6 rounded-xl shadow-lg"
         >
-          <ul className="text-xl  font-semibold">
+          <ul className="text-xl font-semibold">
             {routers.map((route) => (
               <a
                 className="active:text-gray-400"

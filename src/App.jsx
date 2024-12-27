@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import Brands from "./Components/Brands";
 
 import VartaSponsor from "./Components/vartaSponsor";
+import Categories from "./Components/Categories";
 
 SectionWrapper.propTypes = {
   children: PropTypes.node.isRequired, // 'children' türü doğrulandı
@@ -42,6 +43,9 @@ function App() {
       <Navbar />
       <SectionWrapper>
         <Slider />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Categories />
       </SectionWrapper>
       <SectionWrapper>
         <VartaSponsor />

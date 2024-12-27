@@ -5,9 +5,9 @@ import Platin from "../assets/platin-logo.png";
 import Prs from "../assets/prs-logo.png.webp";
 import Turkuaz from "../assets/turkuaz-logo.png";
 import Varta from "../assets/Varta-Logo.png";
-
+import Yigit from "../assets/yigitaku.png";
 export default function Brands() {
-  const brands = [Bosch, Varta, Gentry, Platin, inciAku, Prs, Turkuaz];
+  const brands = [Bosch, Yigit, Varta, Gentry, Platin, inciAku, Prs, Turkuaz];
 
   return (
     <div className="bg-gray-100 py-6">
