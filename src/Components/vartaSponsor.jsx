@@ -2,32 +2,28 @@ import MainImage from "../assets/varta.jpg";
 
 export default function VartaSponsor() {
   return (
-    <section className="py-12">
-      <div className="max-w-7xl mx-auto gap-10 justify-between px-4 flex flex-col md:flex-row-reverse items-center md:space-x-8 space-y-6 md:space-y-0">
-        {/* Sağda Yazı Alanı */}
-        <div className="flex-1 md:w-1/2 text-center md:text-left">
-          <h2 className="text-black text-5xl md:text-5xl font-bold mb-4 leading-tight tracking-wide">
-            Dört Mevsim Akü Market, <span>Varta</span> Kocaeli Yetkili Servisi
-          </h2>
-          <p className="text-gray-700 mb-4 text-md md:text-xl font-medium leading-relaxed opacity-80">
-            Varta, güvenilirliği ve uzun ömrü ile tanınan bir markadır. Dört
-            Mevsim Akü Market olarak, Kocaelideki yetkili servis hizmetimizle,
-            kaliteli ve dayanıklı akü çözümleri sunuyoruz.
-            <span className="block mt-2 text-base text-gray-500">
-              Yolculuklarınızda güvenliğiniz bizim için önemli. Varta aküleriyle
-              her zaman yol alabilirsiniz.
-            </span>
-          </p>
-        </div>
+    <section className="relative w-full p-6 py-20 md:p-32 overflow-hidden">
+      {/* Arka Plan Resmi */}
+      <div className="absolute inset-0">
+        <img
+          src={MainImage}
+          className="w-full h-full object-cover"
+          alt="Varta Akü"
+        />
+        <div className="absolute inset-0  bg-black bg-opacity-50"></div>
+      </div>
 
-        {/* Solda Resim Alanı */}
-        <div className="flex-1 w-full">
-          <img
-            src={MainImage}
-            className="rounded-lg shadow-2xl transform transition-transform hover:scale-105 duration-500"
-            alt="Varta Akü"
-          />
-        </div>
+      {/* İçerik Alanı */}
+      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center md:px-12">
+        <h2 className="text-white text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-wide">
+          Dört Mevsim Akü Market, <span className="text-yellow-400">Varta</span>{" "}
+          Kocaeli Yetkili Servisi
+        </h2>
+        <p className="text-gray-200 text-lg md:text-2xl font-medium leading-relaxed max-w-3xl">
+          Varta, güvenilirliği ve uzun ömrü ile tanınan bir markadır. Dört
+          Mevsim Akü Market olarak, Kocaeli'deki yetkili servis hizmetimizle,
+          kaliteli ve dayanıklı akü çözümleri sunuyoruz.
+        </p>
       </div>
     </section>
   );

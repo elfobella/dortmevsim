@@ -47,7 +47,7 @@ const Categories = () => {
                   className="absolute inset-0 w-full group-hover:scale-110 transition-all h-full object-cover"
                 />
                 {/* İçerik Bölmesi */}
-                <div className="relative z-10 p-6 bg-gradient-to-br from-black to-transparent">
+                <div className="relative z-10 p-8 bg-gradient-to-br from-black to-transparent">
                   {/* Kategori Başlık */}
                   <h3 className="text-xl font-bold mb-2 text-yellow-400">
                     {category.title}
