@@ -10,14 +10,14 @@ const Cards = ({ icon, title, desc }) => {
         visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col justify-between items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      className="flex flex-col justify-between items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow"
     >
       <a href="#">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
           {icon}
         </h5>
       </a>
-      <h2 className="mb-3 font-semibold text-2xl text-center text-gray-700 dark:text-gray-400">
+      <h2 className="mb-3 font-semibold text-2xl text-center text-gray-700">
         {title}
       </h2>
       <p className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black">

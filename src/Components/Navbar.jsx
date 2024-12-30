@@ -4,15 +4,16 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Phone } from "lucide-react";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const routers = [
-    { link: "Ürünlerimiz", href: "products" },
-    { link: "İletişim", href: "contact" },
-    { link: "Hakkımızda", href: "about" },
+    { link: "Aküm Gelsin Yerinde Montaj", href: "akum-gelsin" },
+    { link: "Binek Araç Aküleri", href: "binek" },
+    { link: "Start-Stop Aküleri", href: "start-stop" },
   ];
 
   const toggleMenu = () => {
@@ -36,24 +37,26 @@ const Navbar = () => {
       {/* Navbar container */}
       <div className="px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
-        <img
-          className="w-1/2 md:w-1/6"
-          src={Logo}
-          alt="Dört Mevsim Akü Market"
-        />
+        <Link className="relative w-1/2 md:w-1/3" to="/">
+          <img className="md:w-1/2" src={Logo} alt="Dört Mevsim Akü Market" />
+        </Link>
 
         {/* Desktop menu */}
         <div className="hidden md:flex gap-2 items-center">
-          <ul className="flex space-x-6 border-r border-black pr-2">
+          <ul className="flex space-x-4 pr-2">
             {routers.map((route) => (
-              <a
-                className="relative group font-medium"
+              <NavLink
+                to={`/${route.href}`}
+                className={({ isActive }) =>
+                  `relative group font-medium ${
+                    isActive ? "text-yellow-500" : ""
+                  }`
+                }
                 key={route.link}
-                href={"#" + route.href}
               >
                 <li>{route.link}</li>
                 <span className="w-0 group-hover:w-full transition-all duration-300 ease-in-out h-0.5 bg-black absolute"></span>
-              </a>
+              </NavLink>
             ))}
           </ul>
           <div className="flex items-center gap-2">
@@ -92,13 +95,18 @@ const Navbar = () => {
         >
           <ul className="text-xl font-semibold">
             {routers.map((route) => (
-              <a
-                className="active:text-gray-400"
+              <NavLink
+                onClick={() => setIsOpen((o) => !o)}
+                to={`/${route.href}`}
+                className={({ isActive }) =>
+                  `relative group font-medium ${
+                    isActive ? "text-yellow-500" : ""
+                  }`
+                }
                 key={route.link}
-                href={"#" + route.href}
               >
                 <li className="py-2 border-b">{route.link}</li>
-              </a>
+              </NavLink>
             ))}
           </ul>
         </motion.div>

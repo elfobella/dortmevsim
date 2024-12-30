@@ -5,7 +5,7 @@ import cors from "cors";
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 app.get("/get-reviews", async (req, res) => {
   const { placeId } = req.query; // place_id'yi frontend'den alacağız
 

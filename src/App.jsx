@@ -54,16 +54,10 @@ function App() {
         <Brands />
       </SectionWrapper>
       <SectionWrapper>
-        <Products />
-      </SectionWrapper>
-      <SectionWrapper>
         <About />
       </SectionWrapper>
       <SectionWrapper>
         <Contact />
-      </SectionWrapper>
-      <SectionWrapper>
-        <Reviews placeId={placeId} />
       </SectionWrapper>
       <Footer />
     </>

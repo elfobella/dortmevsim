@@ -35,10 +35,7 @@ export default function Contact() {
               </div>
               <div className="border-b border-black pb-1">
                 <Map className="w-5 h-5 text-[#be6c30]" />
-                <a
-                  href="https://www.google.com/maps?hl=tr&gl=tr&um=1&ie=UTF-8&fb=1&sa=X&ftid=0x14cb455ee2edd8a5:0x15dd8203e8d684af"
-                  target="_blank"
-                >
+                <a href="https://www.google.com/maps?hl=tr&gl=tr&um=1&ie=UTF-8&fb=1&sa=X&ftid=0x14cb455ee2edd8a5:0x15dd8203e8d684af">
                   KONUMDA AÇ
                 </a>
               </div>
