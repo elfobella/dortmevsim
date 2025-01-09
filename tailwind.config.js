@@ -1,5 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    options: {
+      safelist: [], // Sadece kullanılan class'lar dahil edilsin
+    },
+  },
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {

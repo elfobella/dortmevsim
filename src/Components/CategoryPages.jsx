@@ -1,11 +1,12 @@
 // Categories.js
 import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
+import { motion } from "framer-motion";
+import { ArrowRight, Star } from "lucide-react";
+
 import StartStop from "../assets/start-stop.jpg";
 import NormalCar from "../assets/normal-car.jpg";
 import HemenTeslim from "../assets/hemen-teslim.jpg";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 import Img1 from "../assets/1.jpg";
 import Img2 from "../assets/2.jpg";
@@ -28,7 +29,7 @@ const categoriesContent = {
     info: "Akülerimiz",
     title: "Binek Araçlar",
     description: "Binek araç kategorisi, konforlu ve hızlı araçlar içerir.",
-    image: NormalCar, // Kategori ana görseli
+    image: NormalCar,
     productImages: [
       {
         name: "Platin Premium smf 60Ah",
@@ -91,7 +92,7 @@ const categoriesContent = {
     info: "Akülerimiz",
     title: "Start-Stop Araçlar",
     description: "Verimli sürüş için en son Start-Stop sistemleri.",
-    image: StartStop, // Kategori ana görseli
+    image: StartStop,
     productImages: [
       {
         name: "Yiğit Akü AGM W3-C2-V2-M1",
@@ -111,7 +112,7 @@ const categoriesContent = {
     info: "Konumunuza Gelelim",
     title: "Aküm Gelsin,Yerinde Montaj",
     description: "Araç bataryalarınızı en iyi seçeneklerle şarj edin.",
-    image: HemenTeslim, // Kategori ana görseli
+    image: HemenTeslim,
     productImages: [
       {
         name: "Bizi Arayın",
@@ -137,74 +138,116 @@ const categoriesContent = {
   },
 };
 
-const Layout = ({ info, title, description, image, productImages }) => {
+const Layout = ({ title, description, image, info, productImages }) => {
   return (
     <>
       <Navbar />
+      
       {/* Hero Section */}
-      <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[70vh] overflow-hidden">
-        <motion.img
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.8 }}
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent flex items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+      <section className="relative min-h-[70vh] flex items-center">
+        {/* Background Image with Overlay */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="absolute inset-0 z-0"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5 }}
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-4 md:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="container mx-auto px-4 md:px-6"
+            className="max-w-3xl"
           >
-            <h1 className="text-2xl sm:text-3xl md:text-7xl font-bold text-white mb-2 md:mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               {title}
             </h1>
-            <p className="text-base sm:text-lg md:text-2xl text-gray-200 max-w-2xl">
+            <p className="text-lg md:text-xl text-gray-200 mb-8">
               {description}
             </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#be6c30] text-white px-8 py-3 rounded-full font-medium flex items-center space-x-2 hover:bg-[#a55b28] transition-colors duration-300"
+            >
+              <span>Detaylı Bilgi</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
           </motion.div>
         </div>
-      </div>
+      </section>
 
-      {/* Products Section */}
-      <section className="py-8 md:py-16 bg-gradient-to-b from-gray-50 to-gray-100">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.h2 
+      {/* Products Section - Yeniden tasarlandı */}
+      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-gray-100">
+        <div className="container mx-auto px-4 md:px-8">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12"
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
           >
-            {info}
-          </motion.h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              {info}
+            </h2>
+            <div className="flex justify-center space-x-2 mb-8">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
+              ))}
+            </div>
+            <p className="text-lg text-gray-600">
+              En kaliteli ürünleri en uygun fiyatlarla sunuyoruz
+            </p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {productImages.map((product, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
               >
-                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                {/* Image Wrapper */}
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                
-                <div className="p-4 md:p-6">
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-2">
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#be6c30] transition-colors duration-300">
                     {product.name}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600">
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     {product.description}
                   </p>
                 </div>
+
+                {/* Border Effect */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#be6c30]/20 transition-colors duration-300" />
+
+                {/* Corner Accents */}
+                <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-xl" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-xl" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-xl" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl" />
               </motion.div>
             ))}
           </div>
