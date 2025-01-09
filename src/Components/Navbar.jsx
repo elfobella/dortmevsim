@@ -1,8 +1,6 @@
 import Logo from "../assets/dortmevsimaku-logo.jpg";
-
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 import { Phone } from "lucide-react";
 import { Link, NavLink } from "react-router";
 
@@ -16,10 +14,6 @@ const Navbar = () => {
     { link: "Start-Stop Aküleri", href: "start-stop" },
   ];
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -29,89 +23,131 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl p-2 ${
-        isScrolled ? "bg-white shadow-md" : "bg-white backdrop-blur"
-      } rounded-xl transition-all duration-300 z-50`}
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg py-1 md:py-2"
+          : "bg-black/30 backdrop-blur-sm py-2 md:py-4"
+      }`}
     >
-      {/* Navbar container */}
-      <div className="px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <Link className="relative w-1/2 md:w-1/3" to="/">
-          <img className="md:w-1/2" src={Logo} alt="Dört Mevsim Akü Market" />
-        </Link>
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 md:h-16">
+          {/* Logo */}
+          <Link to="/" className="flex-shrink-0">
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              src={Logo}
+              alt="Dört Mevsim Akü Market"
+              className="h-12 md:h-16 w-auto"
+            />
+          </Link>
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex gap-2 items-center">
-          <ul className="flex space-x-4 pr-2">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
             {routers.map((route) => (
               <NavLink
+                key={route.href}
                 to={`/${route.href}`}
                 className={({ isActive }) =>
-                  `relative group font-medium ${
-                    isActive ? "text-yellow-500" : ""
+                  `relative group px-3 py-2 text-sm font-medium transition-colors ${
+                    isScrolled
+                      ? isActive
+                        ? "text-[#be6c30]"
+                        : "text-gray-800 hover:text-[#be6c30]"
+                      : isActive
+                      ? "text-[#be6c30]"
+                      : "text-white hover:text-[#be6c30]"
                   }`
                 }
-                key={route.link}
               >
-                <li>{route.link}</li>
-                <span className="w-0 group-hover:w-full transition-all duration-300 ease-in-out h-0.5 bg-black absolute"></span>
+                {route.link}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#be6c30] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
               </NavLink>
             ))}
-          </ul>
-          <div className="flex items-center gap-2">
-            <a
+
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               href="tel:0552 008 31 37"
-              className="flex items-center md:text-sm hover:bg-white hover:text-black border-black border transition-all text-xs gap-1 bg-black rounded-lg py-1 px-2 text-white"
+              className="flex items-center space-x-2 bg-[#be6c30] text-white px-4 py-2 rounded-full hover:bg-[#a55b28] transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
               <Phone className="w-4 h-4" />
-              <span className="md:font-bold">0552 008 31 37</span>
-            </a>
+              <span className="font-medium">0552 008 31 37</span>
+            </motion.a>
           </div>
-        </div>
 
-        {/* Hamburger icon for mobile */}
-        <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
-          {isOpen ? (
-            <motion.div whileTap={{ rotate: 90 }}>
-              <FaTimes size={24} />
-            </motion.div>
-          ) : (
-            <motion.div whileTap={{ rotate: 90 }}>
-              <FaBars size={24} />
-            </motion.div>
-          )}
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                isScrolled ? "text-gray-600" : "text-white"
+              } hover:text-[#be6c30]`}
+            >
+              <div className="w-6 h-6 relative">
+                <span
+                  className={`absolute h-0.5 w-full bg-current transform transition-all duration-300 ${
+                    isOpen ? "rotate-45 top-3" : "top-1"
+                  }`}
+                />
+                <span
+                  className={`absolute h-0.5 w-full bg-current top-3 transition-all duration-300 ${
+                    isOpen ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`absolute h-0.5 w-full bg-current transform transition-all duration-300 ${
+                    isOpen ? "-rotate-45 top-3" : "top-5"
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden bg-white py-4 px-6 rounded-xl shadow-lg"
-        >
-          <ul className="text-xl font-semibold">
-            {routers.map((route) => (
-              <NavLink
-                onClick={() => setIsOpen((o) => !o)}
-                to={`/${route.href}`}
-                className={({ isActive }) =>
-                  `relative group font-medium ${
-                    isActive ? "text-yellow-500" : ""
-                  }`
-                }
-                key={route.link}
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white/95 backdrop-blur-md border-t"
+          >
+            <div className="px-4 py-2 space-y-1">
+              {routers.map((route) => (
+                <NavLink
+                  key={route.href}
+                  to={`/${route.href}`}
+                  onClick={() => setIsOpen(false)}
+                  className={({ isActive }) =>
+                    `block px-3 py-2 rounded-lg text-base font-medium transition-colors ${
+                      isActive
+                        ? "bg-[#be6c30]/10 text-[#be6c30]"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-[#be6c30]"
+                    }`
+                  }
+                >
+                  {route.link}
+                </NavLink>
+              ))}
+              <a
+                href="tel:0552 008 31 37"
+                className="flex items-center space-x-2 px-3 py-2 text-[#be6c30] hover:bg-[#be6c30]/10 rounded-lg transition-colors"
               >
-                <li className="py-2 border-b">{route.link}</li>
-              </NavLink>
-            ))}
-          </ul>
-        </motion.div>
-      )}
-    </nav>
+                <Phone className="w-5 h-5" />
+                <span className="font-medium">0552 008 31 37</span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

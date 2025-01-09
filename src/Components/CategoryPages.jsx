@@ -1,9 +1,11 @@
 // Categories.js
 import { useLocation } from "react-router-dom";
-import Layout from "./Layout";
+import Navbar from "./Navbar";
 import StartStop from "../assets/start-stop.jpg";
 import NormalCar from "../assets/normal-car.jpg";
 import HemenTeslim from "../assets/hemen-teslim.jpg";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 import Img1 from "../assets/1.jpg";
 import Img2 from "../assets/2.jpg";
@@ -135,23 +137,96 @@ const categoriesContent = {
   },
 };
 
+const Layout = ({ info, title, description, image, productImages }) => {
+  return (
+    <>
+      <Navbar />
+      {/* Hero Section */}
+      <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[70vh] overflow-hidden">
+        <motion.img
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8 }}
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent flex items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="container mx-auto px-4 md:px-6"
+          >
+            <h1 className="text-2xl sm:text-3xl md:text-7xl font-bold text-white mb-2 md:mb-4">
+              {title}
+            </h1>
+            <p className="text-base sm:text-lg md:text-2xl text-gray-200 max-w-2xl">
+              {description}
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Products Section */}
+      <section className="py-8 md:py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12"
+          >
+            {info}
+          </motion.h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+            {productImages.map((product, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                
+                <div className="p-4 md:p-6">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm md:text-base text-gray-600">
+                    {product.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
 const CategoryPages = () => {
   const location = useLocation();
   const categoryData = categoriesContent[location.pathname];
 
   if (!categoryData) {
-    return <div>Kategori bulunamadı</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-2xl text-gray-600">Kategori bulunamadı</div>
+      </div>
+    );
   }
 
-  return (
-    <Layout
-      info={categoryData.info}
-      title={categoryData.title}
-      description={categoryData.description}
-      image={categoryData.image}
-      productImages={categoryData.productImages}
-    />
-  );
+  return <Layout {...categoryData} />;
 };
 
 export default CategoryPages;

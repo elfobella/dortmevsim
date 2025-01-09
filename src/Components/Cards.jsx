@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { HandCoins, ShieldCheck, Truck } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
-const Cards = ({ icon, title, desc }) => {
+const Card = ({ icon, title, desc }) => {
   return (
     <motion.div
       variants={{
@@ -10,17 +10,15 @@ const Cards = ({ icon, title, desc }) => {
         visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col justify-between items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow"
+      className="group flex flex-col justify-between items-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
     >
-      <a href="#">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-          {icon}
-        </h5>
-      </a>
-      <h2 className="mb-3 font-semibold text-2xl text-center text-gray-700">
+      <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
+        {icon}
+      </div>
+      <h2 className="mb-4 font-bold text-2xl text-center text-gray-800 group-hover:text-[#be6c30] transition-colors">
         {title}
       </h2>
-      <p className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black">
+      <p className="text-center text-gray-600 group-hover:text-gray-800 transition-colors">
         {desc}
       </p>
     </motion.div>
@@ -32,15 +30,6 @@ const CardsList = () => {
     triggerOnce: true,
     threshold: 0.2,
   });
-
-  const parentVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.4, // Çocukların sıralı gelmesi için gecikme
-      },
-    },
-  };
 
   const cardsData = [
     {
@@ -63,13 +52,19 @@ const CardsList = () => {
   return (
     <motion.div
       ref={ref}
-      variants={parentVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="grid grid-cols-1 md:grid-cols-3 p-4 gap-4 mt-12"
+      variants={{
+        visible: {
+          transition: {
+            staggerChildren: 0.3,
+          },
+        },
+      }}
+      className="grid grid-cols-1 md:grid-cols-3 gap-8 p-4 mt-12"
     >
       {cardsData.map((card, index) => (
-        <Cards
+        <Card
           key={index}
           icon={card.icon}
           title={card.title}
