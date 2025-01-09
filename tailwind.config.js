@@ -1,15 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
-    options: {
-      safelist: [], // Sadece kullanılan class'lar dahil edilsin
-    },
-  },
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Saira', 'sans-serif'],
+      },
       animation: {
         scroll: "scroll 30s linear infinite",
       },

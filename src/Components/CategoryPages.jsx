@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
+import Footer from "./Footer";
 
 import StartStop from "../assets/start-stop.jpg";
 import NormalCar from "../assets/normal-car.jpg";
@@ -173,22 +174,14 @@ const Layout = ({ title, description, image, info, productImages }) => {
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 mb-8">
+            <p className="text-lg md:text-xl text-gray-200">
               {description}
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#be6c30] text-white px-8 py-3 rounded-full font-medium flex items-center space-x-2 hover:bg-[#a55b28] transition-colors duration-300"
-            >
-              <span>Detaylı Bilgi</span>
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
           </motion.div>
         </div>
       </section>
 
-      {/* Products Section - Yeniden tasarlandı */}
+      {/* Products Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="container mx-auto px-4 md:px-8">
           <motion.div
@@ -197,62 +190,71 @@ const Layout = ({ title, description, image, info, productImages }) => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-              {info}
-            </h2>
-            <div className="flex justify-center space-x-2 mb-8">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
-              ))}
+            {/* Yeni Title Tasarımı */}
+            <div className="relative inline-block">
+              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                {info}
+              </h2>
+              {/* Dekoratif çizgi */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-[#be6c30]" />
+              {/* Nokta detayları */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                <div className="flex items-center space-x-8">
+                  <div className="w-2 h-2 rounded-full bg-[#be6c30]" />
+                  <div className="w-2 h-2 rounded-full bg-[#be6c30]" />
+                </div>
+              </div>
             </div>
-            <p className="text-lg text-gray-600">
+
+            {/* Alt başlık */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg text-gray-600 mt-8"
+            >
               En kaliteli ürünleri en uygun fiyatlarla sunuyoruz
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {productImages.map((product, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               >
-                {/* Image Wrapper */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                {/* Image Container */}
+                <div className="relative h-60 overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-102"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Simple Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#be6c30] transition-colors duration-300">
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 hover:text-[#be6c30] transition-colors duration-300">
                     {product.name}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
                     {product.description}
                   </p>
                 </div>
-
-                {/* Border Effect */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#be6c30]/20 transition-colors duration-300" />
-
-                {/* Corner Accents */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-xl" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-xl" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-xl" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-[#be6c30] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-xl" />
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Footer'ı ekliyoruz */}
+      <Footer />
     </>
   );
 };

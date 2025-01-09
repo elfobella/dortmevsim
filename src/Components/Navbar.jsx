@@ -22,6 +22,14 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavigation = () => {
+    setIsOpen(false);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -36,7 +44,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
+          <Link to="/" onClick={handleNavigation} className="flex-shrink-0">
             <motion.img
               whileHover={{ scale: 1.05 }}
               src={Logo}
@@ -51,6 +59,7 @@ const Navbar = () => {
               <NavLink
                 key={route.href}
                 to={`/${route.href}`}
+                onClick={handleNavigation}
                 className={({ isActive }) =>
                   `relative group px-3 py-2 text-sm font-medium transition-colors ${
                     isScrolled
@@ -124,7 +133,7 @@ const Navbar = () => {
                 <NavLink
                   key={route.href}
                   to={`/${route.href}`}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleNavigation}
                   className={({ isActive }) =>
                     `block px-3 py-2 rounded-lg text-base font-medium transition-colors ${
                       isActive
